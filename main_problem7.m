@@ -11,7 +11,8 @@ D = diag(diag(A));
 
 A = D\A;
 b = D\b;
-%% SOR
+
+% SOR
 R = -triu(A, 1);
 L = -tril(A, -1);
 wb = 2/(1+sqrt(1-max(abs(eig(L+R)))^2));

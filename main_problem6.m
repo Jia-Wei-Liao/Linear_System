@@ -7,12 +7,12 @@ wb = 1.1;  % 1.1, 1.2, 1.8
 A = hilb(n);
 b = ones(n, 1);
 
-%% Jacobi
+% Jacobi
 [x, ii, rho, re] = Jacobi(A, b);
 
-%% Gauss Seidel
+% Gauss Seidel
 [x, ii, rho, re] = GaussSeidel(A, b);
 
-%% SOR
+% SOR
 [x, ii, rho, re] = SOR(A, b, wb);
 
