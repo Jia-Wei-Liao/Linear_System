@@ -18,7 +18,7 @@ L = -tril(A, -1);
 
 % SOR for best w
 wb = 2/(1+sqrt(1-max(abs(eig(L+R)))^2));
-[x, best_ii, rho, re] = SOR(A, b, wb);
+[x, BestIter, rho, re] = SOR(A, b, wb);
 
 % SOR for general 1<w<2
 N = 2e+4;
@@ -32,7 +32,7 @@ for w = w0:dw:w_end
     [x, iter, ~, re] = SOR(A, b, w);
     Lw = (I-w*L)\((1-w)*I+w*R);
     rho = max(abs(eig(Lw)));
-    Record(k, :) = [w iter, rho];
+    Record(k, :) = [w, iter, rho];
     k = k + 1;
 end
 Record = Record(Record(:,1)>0, :);
@@ -44,7 +44,7 @@ xlabel('$w$', 'fontsize', 12, 'interpreter', 'latex');
 ylabel('iteration $i$', 'fontSize', 12, 'interpreter', 'latex');
 grid on
 hold on
-semilogy(wb, best_ii, '-o', 'MarkerFaceColor', 'r');
+semilogy(wb, BestIter, '-o', 'MarkerFaceColor', 'r');
 hold off
 
 % Plot the Figure 2.
